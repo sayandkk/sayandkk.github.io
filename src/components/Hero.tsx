@@ -28,14 +28,14 @@ const Hero: React.FC = () => {
           >
             Hi, I'm Sayand K K
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4"
           >
-            Developer from Edappal, Kerala
+            Software Engineer & Web Developer
           </motion.p>
 
           <motion.p
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
             >
               View Projects
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
             >
               <Github size={24} />
             </motion.a>
-            
+
             <motion.a
               whileHover={{ scale: 1.2, y: -5 }}
               href="https://linkedin.com/in/sayandkk"
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
             >
               <Linkedin size={24} />
             </motion.a>
-            
+
             <motion.a
               whileHover={{ scale: 1.2, y: -5 }}
               href="mailto:sayandkk53@gmail.com"

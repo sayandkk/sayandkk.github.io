@@ -6,21 +6,21 @@ const Skills: React.FC = () => {
     {
       title: 'Frontend Development',
       skills: [
-        { name: 'React.js', level: 90, color: '#61DAFB' },
-        { name: 'TypeScript', level: 85, color: '#3178C6' },
-        { name: 'JavaScript', level: 88, color: '#F7DF1E' },
-        { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
+        { name: 'React.js', level: 75, color: '#61DAFB' },
+        { name: 'TypeScript', level: 75, color: '#3178C6' },
+        { name: 'JavaScript', level: 75, color: '#F7DF1E' },
+        { name: 'Tailwind CSS', level: 80, color: '#06B6D4' },
         { name: 'HTML/CSS', level: 95, color: '#E34F26' }
       ]
     },
     {
       title: 'Backend Development',
       skills: [
-        { name: 'NestJS', level: 85, color: '#E0234E' },
-        { name: 'Node.js', level: 80, color: '#339933' },
-        { name: 'Python', level: 75, color: '#3776AB' },
-        { name: 'PostgreSQL', level: 78, color: '#336791' },
-        { name: 'MongoDB', level: 82, color: '#47A248' }
+        { name: 'NestJS', level: 75, color: '#E0234E' },
+        { name: 'Node.js', level: 75, color: '#339933' },
+        { name: 'Python', level: 85, color: '#3776AB' },
+        { name: 'PostgreSQL', level: 60, color: '#336791' },
+        { name: 'MongoDB', level: 70, color: '#47A248' }
       ]
     },
     {
@@ -29,11 +29,11 @@ const Skills: React.FC = () => {
         { name: 'Git', level: 88, color: '#F05032' },
         { name: 'Firebase', level: 85, color: '#FFCA28' },
         { name: 'Arduino', level: 70, color: '#00979D' },
-        { name: 'Docker', level: 65, color: '#2496ED' },
-        { name: 'AWS', level: 60, color: '#FF9900' }
+        { name: 'Docker', level: 80, color: '#2496ED' },
       ]
     }
   ];
+
 
   const techLogos = [
     { name: 'React', icon: '⚛️' },
@@ -53,7 +53,7 @@ const Skills: React.FC = () => {
       <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl" />
       <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl" />
       <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-pink-500/10 rounded-full blur-lg" />
-      
+
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -62,14 +62,14 @@ const Skills: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             Skills & Expertise
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="w-16 md:w-24 lg:w-32 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mx-auto rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: "auto" }}
@@ -84,15 +84,15 @@ const Skills: React.FC = () => {
             Passionate about creating exceptional digital experiences with modern technologies
           </motion.p>
         </motion.div>
-        
+
         {/* Floating animation elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -20, 0],
               rotate: [0, 5, 0]
             }}
-            transition={{ 
+            transition={{
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut"
@@ -100,11 +100,11 @@ const Skills: React.FC = () => {
             className="absolute top-20 right-20 w-8 h-8 bg-blue-500/20 rounded-lg"
           />
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, 15, 0],
               rotate: [0, -3, 0]
             }}
-            transition={{ 
+            transition={{
               duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
@@ -113,11 +113,11 @@ const Skills: React.FC = () => {
             className="absolute bottom-32 left-16 w-6 h-6 bg-purple-500/20 rounded-full"
           />
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -10, 0],
               x: [0, 5, 0]
             }}
-            transition={{ 
+            transition={{
               duration: 5,
               repeat: Infinity,
               ease: "easeInOut",
@@ -140,8 +140,8 @@ const Skills: React.FC = () => {
               key={tech.name}
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ 
-                scale: 1.1, 
+              whileHover={{
+                scale: 1.1,
                 y: -5,
                 boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
               }}
@@ -151,7 +151,7 @@ const Skills: React.FC = () => {
             >
               {/* Hover effect background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               <div className="text-3xl md:text-4xl mb-2 relative z-10 group-hover:animate-bounce">{tech.icon}</div>
               <p className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300 relative z-10 text-center">{tech.name}</p>
             </motion.div>
@@ -171,26 +171,26 @@ const Skills: React.FC = () => {
             >
               {/* Gradient background effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
               {/* Category icon based on title */}
               <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 mx-auto relative z-10">
                 <span className="text-xl md:text-2xl">
-                  {category.title.includes('Frontend') ? '🎨' : 
-                   category.title.includes('Backend') ? '⚙️' : '🛠️'}
+                  {category.title.includes('Frontend') ? '🎨' :
+                    category.title.includes('Backend') ? '⚙️' : '🛠️'}
                 </span>
               </div>
-              
+
               <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-6 text-gray-800 dark:text-white text-center relative z-10 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {category.title}
               </h3>
-              
+
               <div className="space-y-4 lg:space-y-6 relative z-10">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ 
+                    transition={{
                       delay: (categoryIndex * 0.15) + (skillIndex * 0.1),
                       type: "spring",
                       stiffness: 200
@@ -202,28 +202,28 @@ const Skills: React.FC = () => {
                       <span className="font-semibold text-sm md:text-base text-gray-700 dark:text-gray-300 group-hover/skill:text-gray-900 dark:group-hover/skill:text-white transition-colors">
                         {skill.name}
                       </span>
-                      <motion.span 
+                      <motion.span
                         className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-bold px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full"
                         whileHover={{ scale: 1.1 }}
                       >
                         {skill.level}%
                       </motion.span>
                     </div>
-                    
+
                     <div className="relative">
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3 overflow-hidden shadow-inner">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
-                          transition={{ 
-                            duration: 1.5, 
+                          transition={{
+                            duration: 1.5,
                             delay: (categoryIndex * 0.15) + (skillIndex * 0.1),
                             ease: "easeOut"
                           }}
                           viewport={{ once: true }}
                           className="h-full rounded-full relative overflow-hidden shadow-lg"
-                          style={{ 
-                            background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})` 
+                          style={{
+                            background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})`
                           }}
                         >
                           {/* Animated shine effect */}
@@ -239,19 +239,19 @@ const Skills: React.FC = () => {
                           />
                         </motion.div>
                       </div>
-                      
+
                       {/* Skill level indicator */}
                       <motion.div
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ 
+                        transition={{
                           delay: (categoryIndex * 0.15) + (skillIndex * 0.1) + 1,
                           type: "spring"
                         }}
                         className="absolute right-0 top-0 transform translate-y-[-50%]"
                         style={{ left: `${skill.level}%` }}
                       >
-                        <div 
+                        <div
                           className="w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-white shadow-lg"
                           style={{ backgroundColor: skill.color }}
                         />
