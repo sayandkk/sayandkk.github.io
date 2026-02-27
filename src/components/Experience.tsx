@@ -1,215 +1,156 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Building, Award } from 'lucide-react';
+import { Briefcase, GraduationCap, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+
+const experiences = [
+  {
+    type: 'work',
+    title: 'Software Development Intern',
+    org: 'UL Technology Solutions',
+    location: 'Remote',
+    period: 'May 2024 – Present',
+    current: true,
+    bullets: [
+      'Built an end-to-end Employee Transfer System with React + NestJS + PostgreSQL',
+      'Implemented JWT-based RBAC and multi-step approval workflows',
+      'Designed RESTful APIs and optimized relational database schemas',
+      'Delivered responsive admin dashboards with real-time data',
+    ],
+    tags: ['React', 'NestJS', 'PostgreSQL', 'TypeScript', 'JWT'],
+  },
+  {
+    type: 'work',
+    title: 'Research Intern',
+    org: 'Aster Medcity',
+    location: 'Kochi, Kerala',
+    period: 'Feb 2024 – Mar 2024',
+    current: false,
+    bullets: [
+      'Built Arduino-based EMG signal acquisition hardware setup',
+      'Implemented real-time signal processing algorithms in Python',
+      'Created dashboards for biomedical data visualization',
+      'Presented research outcomes to medical and technical teams',
+    ],
+    tags: ['Python', 'Arduino', 'Signal Processing', 'Data Analysis'],
+  },
+];
+
+const education = {
+  degree: 'B.Tech in Computer Science & Engineering',
+  institution: 'University of Calicut',
+  period: '2021 – 2025',
+  grade: 'CGPA: 7.02 / 10',
+  details: 'Focused on software engineering, algorithms, data structures, OS, and networks. Active in hackathons and project competitions.',
+};
 
 const Experience: React.FC = () => {
-  const experiences = [
-    {
-      id: 1,
-      title: 'Software Development Intern',
-      company: 'UL Technology Solutions',
-      location: 'Remote',
-      period: 'May 2024 - Present',
-      description: 'Developing an Employee Transfer System using React, NestJS, and PostgreSQL. Implementing role-based access control, approval workflows, and administrative dashboards for enterprise-grade employee management.',
-      achievements: [
-        'Built full-stack web application with modern technologies',
-        'Implemented secure authentication and authorization',
-        'Designed efficient database schemas and APIs',
-        'Created responsive and intuitive user interfaces'
-      ],
-      technologies: ['React', 'NestJS', 'PostgreSQL', 'TypeScript', 'JWT'],
-      type: 'internship',
-      current: true
-    },
-    {
-      id: 2,
-      title: 'Research Intern',
-      company: 'Aster Medcity',
-      location: 'Kochi, Kerala',
-      period: 'February 2024 - March 2024',
-      description: 'Conducted research on EMG signal analysis using Arduino and Python. Developed signal processing algorithms for muscle activity analysis and contributed to medical diagnostic tools.',
-      achievements: [
-        'Developed signal acquisition systems using Arduino',
-        'Implemented real-time signal processing algorithms',
-        'Created data visualization tools for medical analysis',
-        'Collaborated with medical professionals on research'
-      ],
-      technologies: ['Python', 'Arduino', 'Signal Processing', 'Data Analysis'],
-      type: 'internship',
-      current: false
-    }
-  ];
-
-  const education = [
-    {
-      degree: 'Bachelor of Technology in Computer Science',
-      institution: 'University of Calicut',
-      period: '2021 - 2025',
-      grade: 'CGPA: 7.02/10',
-      description: 'Specialized in software engineering, data structures, algorithms, and computer systems. Completed various projects in web development and research.'
-    }
-  ];
+  const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <section id="experience" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-24 px-6 border-t border-zinc-900">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Experience & Education
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+          <span className="section-num">04</span>
+          <span className="label">Career</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100">Experience &<br /><span className="text-emerald-400">Education.</span></h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Experience Section */}
+        <div className="grid lg:grid-cols-2 gap-10">
+          {/* Work */}
           <div>
-            <motion.h3
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center"
-            >
-              <Building className="mr-3 text-blue-600" size={24} />
-              Professional Experience
-            </motion.h3>
+            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 mb-6 uppercase tracking-widest">
+              <Briefcase size={14} className="text-emerald-500" /> Work Experience
+            </div>
 
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-purple-600"></div>
-
-              <div className="space-y-8">
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={exp.id}
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.2 }}
-                    viewport={{ once: true }}
-                    className="relative pl-12"
+            <div className="space-y-3">
+              {experiences.map((exp, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className={`card-dark overflow-hidden transition-all duration-200 ${expanded === i ? 'border-emerald-800' : 'hover:border-zinc-700'}`}
+                >
+                  <button
+                    className="w-full text-left px-5 py-4 flex items-start justify-between gap-4"
+                    onClick={() => setExpanded(expanded === i ? null : i)}
                   >
-                    {/* Timeline dot */}
-                    <div className={`absolute left-2 w-4 h-4 rounded-full border-4 ${exp.current
-                      ? 'bg-green-500 border-green-200 animate-pulse'
-                      : 'bg-blue-600 border-blue-200'
-                      }`}></div>
-
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-white/20 dark:border-gray-700/50 hover:bg-white/20 dark:hover:bg-gray-700/50 transition-all duration-300"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                        <div>
-                          <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-1">
-                            {exp.title}
-                          </h4>
-                          <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">
-                            {exp.company}
-                          </p>
-                        </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <h4 className="font-bold text-zinc-100 text-sm">{exp.title}</h4>
                         {exp.current && (
-                          <span className="inline-flex items-center px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">
+                          <span className="text-xs px-2 py-0.5 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full font-semibold">
                             Current
                           </span>
                         )}
                       </div>
-
-                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                        <div className="flex items-center">
-                          <Calendar size={16} className="mr-2" />
-                          {exp.period}
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin size={16} className="mr-2" />
-                          {exp.location}
-                        </div>
+                      <p className="text-emerald-400 text-xs font-semibold mb-0.5">{exp.org}</p>
+                      <div className="flex items-center gap-3 text-xs text-zinc-600">
+                        <span className="flex items-center gap-1"><MapPin size={10} />{exp.location}</span>
+                        <span>{exp.period}</span>
                       </div>
+                    </div>
+                    <div className="text-zinc-600 flex-shrink-0 mt-0.5">
+                      {expanded === i ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </div>
+                  </button>
 
-                      <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                        {exp.description}
-                      </p>
-
-                      <div className="mb-4">
-                        <h5 className="font-semibold text-gray-800 dark:text-white mb-2">Key Achievements:</h5>
-                        <ul className="space-y-1">
-                          {exp.achievements.map((achievement, i) => (
-                            <li key={i} className="text-gray-600 dark:text-gray-300 flex items-start">
-                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold"
-                          >
-                            {tech}
-                          </span>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: expanded === i ? 'auto' : 0, opacity: expanded === i ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 pb-5 border-t border-zinc-800 pt-4">
+                      <ul className="space-y-2 mb-4">
+                        {exp.bullets.map((b, j) => (
+                          <li key={j} className="flex items-start gap-2 text-xs text-zinc-400 leading-relaxed">
+                            <span className="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                            {b}
+                          </li>
                         ))}
+                      </ul>
+                      <div className="flex flex-wrap gap-1.5">
+                        {exp.tags.map((t) => <span key={t} className="pill text-xs">{t}</span>)}
                       </div>
-                    </motion.div>
+                    </div>
                   </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Education Section */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center"
-            >
-              <Award className="mr-3 text-purple-600" size={24} />
-              Education
-            </motion.h3>
-
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-white/20 dark:border-gray-700/50 hover:bg-white/20 dark:hover:bg-gray-700/50 transition-all duration-300"
-                >
-                  <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                    {edu.degree}
-                  </h4>
-                  <p className="text-purple-600 dark:text-purple-400 font-semibold mb-2">
-                    {edu.institution}
-                  </p>
-                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center">
-                      <Calendar size={16} className="mr-2" />
-                      {edu.period}
-                    </div>
-                    <div className="flex items-center">
-                      <Award size={16} className="mr-2" />
-                      {edu.grade}
-                    </div>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {edu.description}
-                  </p>
                 </motion.div>
               ))}
             </div>
+          </div>
+
+          {/* Education */}
+          <div>
+            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 mb-6 uppercase tracking-widest">
+              <GraduationCap size={14} className="text-emerald-500" /> Education
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="card-dark p-6 hover:border-emerald-800 transition-colors duration-200"
+            >
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
+                <GraduationCap size={18} className="text-emerald-400" />
+              </div>
+              <h4 className="font-bold text-zinc-100 mb-1 text-sm">{education.degree}</h4>
+              <p className="text-emerald-400 font-semibold text-xs mb-3">{education.institution}</p>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-600 mb-4">
+                <span>{education.period}</span>
+                <span className="font-bold text-zinc-400">{education.grade}</span>
+              </div>
+              <p className="text-xs text-zinc-500 leading-relaxed">{education.details}</p>
+            </motion.div>
           </div>
         </div>
       </div>

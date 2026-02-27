@@ -10,40 +10,58 @@ import Experience from './components/Experience';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleBackground from './components/ParticleBackground';
 
 function App() {
   const { isDarkMode, toggleTheme } = useTheme();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setLoading(false), 1400);
+    return () => clearTimeout(t);
   }, []);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-6">
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full"
-        />
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="relative"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center">
+            <span className="text-zinc-950 font-black text-lg">SK</span>
+          </div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
+            className="absolute -inset-1.5 rounded-2xl border-2 border-transparent border-t-emerald-400 border-r-emerald-400 opacity-60"
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex gap-1.5"
+        >
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{ opacity: [0.2, 1, 0.2] }}
+              transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+              className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+            />
+          ))}
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 min-h-screen">
-      <ParticleBackground />
+    <div className="bg-zinc-950 text-zinc-100 min-h-screen dark:bg-zinc-950 dark:text-zinc-100">
       <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
-      
       <AnimatePresence>
-        <motion.main
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           <Hero />
           <About />
           <Skills />
@@ -53,7 +71,6 @@ function App() {
           <Contact />
         </motion.main>
       </AnimatePresence>
-      
       <Footer />
     </div>
   );

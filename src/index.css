@@ -2,38 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply transition-colors duration-300;
-  }
-  
-  * {
-    @apply transition-colors duration-300;
-  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; @apply antialiased; }
+
+  ::selection { @apply bg-emerald-500/30 text-emerald-100; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-zinc-950; }
+  ::-webkit-scrollbar-thumb { @apply bg-emerald-600 rounded-full; }
 }
 
 @layer components {
-  .section-bg {
-    @apply bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50;
+  .accent { @apply text-emerald-400; }
+  .accent-bg { @apply bg-emerald-400; }
+
+  .label {
+    @apply inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-widest uppercase text-emerald-400 mb-4;
   }
-  
-  .card-bg {
-    @apply bg-white/10 dark:bg-gray-800/50 backdrop-blur-lg border border-white/20 dark:border-gray-700/50;
+  .label::before {
+    content: '';
+    @apply block w-6 h-px bg-emerald-400;
   }
-  
-  .text-primary {
-    @apply text-gray-900 dark:text-white;
+
+  .display {
+    @apply text-4xl md:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight;
   }
-  
-  .text-secondary {
-    @apply text-gray-600 dark:text-gray-300;
+
+  .card-dark {
+    @apply bg-zinc-900 border border-zinc-800 rounded-2xl;
   }
-  
-  .hover-scale {
-    @apply hover:scale-105 transition-transform duration-300;
+
+  .pill {
+    @apply inline-block px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 border border-zinc-700 rounded-full;
   }
+
+  .btn-em {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold rounded-xl transition-all duration-200 text-sm shadow-lg shadow-emerald-500/20 hover:shadow-emerald-400/30 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 hover:border-emerald-500 text-zinc-400 hover:text-emerald-400 font-semibold rounded-xl transition-all duration-200 text-sm hover:-translate-y-0.5;
+  }
+
+  .section-num {
+    @apply text-xs font-mono text-zinc-600 mb-2 block;
+  }
+
+  .divider { @apply border-t border-zinc-800; }
 }
