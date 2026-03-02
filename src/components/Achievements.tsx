@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, BookOpen, Zap, Star, Package } from 'lucide-react';
+import { Trophy, BookOpen, Zap, Star, Package, Award } from 'lucide-react';
 
 const stats = [
   { n: '15+', l: 'Projects', icon: Zap },
@@ -19,6 +19,7 @@ const achievements = [
     tag: 'Competition · 2024',
     title: 'TechPulse Hackathon — 1st Place',
     desc: 'Ranked 1st among 200+ participants. Built an innovative real-time collaboration tool, judged on technical depth, design, and business viability.',
+    link: '',
   },
   {
     icon: BookOpen,
@@ -29,6 +30,18 @@ const achievements = [
     tag: 'Research · 2024',
     title: 'Research Publication',
     desc: 'Co-authored "EMG Signal Analysis for Muscle Activity Recognition" presented at an international medical engineering conference.',
+    link: '',
+  },
+  {
+    icon: Award,
+    accent: 'border-emerald-500/30 bg-emerald-500/5',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/20',
+    iconColor: 'text-emerald-400',
+    dot: 'bg-emerald-500',
+    tag: 'Internship · Feb 2024 – Feb 2025',
+    title: 'Completed 1-Year Research Internship — Aster Medcity',
+    desc: 'Successfully completed a full 1-year research internship at Aster Medcity, Kochi. Built an EMG-based prosthetic arm control system using machine learning to classify muscle signals for gesture recognition.',
+    link: 'https://www.linkedin.com/posts/sayand-kk_emgproject-machinelearning-prostheticarm-activity-7324663646737850368-sued',
   },
 ];
 
@@ -88,7 +101,17 @@ const Achievements: React.FC = () => (
                   {a.tag}
                 </p>
                 <h3 className="font-bold text-zinc-100 mb-2 text-sm">{a.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">{a.desc}</p>
+                <p className="text-xs text-zinc-500 leading-relaxed mb-3">{a.desc}</p>
+                {a.link && (
+                  <a
+                    href={a.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-xs font-semibold flex items-center gap-1 hover:underline ${a.iconColor}`}
+                  >
+                    View Post ↗
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

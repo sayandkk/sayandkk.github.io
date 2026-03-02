@@ -23,15 +23,16 @@ const experiences = [
     title: 'Research Intern',
     org: 'Aster Medcity',
     location: 'Kochi, Kerala',
-    period: 'Feb 2024 – Mar 2024',
+    period: 'Feb 2024 – Feb 2025',
     current: false,
     bullets: [
-      'Built Arduino-based EMG signal acquisition hardware setup',
-      'Implemented real-time signal processing algorithms in Python',
-      'Created dashboards for biomedical data visualization',
-      'Presented research outcomes to medical and technical teams',
+      'Completed a full 1-year research internship in biomedical engineering',
+      'Designed and built an EMG-based prosthetic arm control system using Arduino',
+      'Applied machine learning models to classify EMG signals for gesture recognition',
+      'Processed and visualized real-time biomedical signals using Python',
+      'Collaborated with medical professionals and published research findings',
     ],
-    tags: ['Python', 'Arduino', 'Signal Processing', 'Data Analysis'],
+    tags: ['Python', 'Arduino', 'Machine Learning', 'EMG', 'Signal Processing', 'Prosthetics'],
   },
 ];
 
