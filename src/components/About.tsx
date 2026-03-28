@@ -18,7 +18,7 @@ const bento = [
     id: 'role',
     icon: Briefcase,
     label: 'Current Role',
-    value: 'Software Dev Intern',
+    value: '  Associate Software Engineer @ UL Technology Solutions',
   },
   {
     id: 'edu',

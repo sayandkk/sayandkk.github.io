@@ -5,7 +5,7 @@ import { Briefcase, GraduationCap, MapPin, ChevronDown, ChevronUp } from 'lucide
 const experiences = [
   {
     type: 'work',
-    title: 'Software Development Intern',
+    title: 'Associate Software Engineer',
     org: 'UL Technology Solutions',
     location: 'Remote',
     period: 'May 2024 – Present',
