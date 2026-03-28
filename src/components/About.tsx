@@ -35,10 +35,10 @@ const bento = [
 ];
 
 const stats = [
-  { n: '15+', l: 'Projects' },
-  { n: '2+', l: 'Years Exp.' },
-  { n: '5+', l: 'Hackathons' },
-  { n: '12+', l: 'Tech Stack' },
+  { n: '3+', l: 'Projects' },
+  { n: '1+', l: 'Years Exp.' },
+  { n: '2+', l: 'Hackathons' },
+  // { n: '12+', l: 'Tech Stack' },
 ];
 
 const About: React.FC = () => (

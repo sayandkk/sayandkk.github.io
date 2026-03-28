@@ -62,7 +62,7 @@ const Contact: React.FC = () => {
             <div className="flex gap-3">
               {[
                 { href: 'https://github.com/sayandkk', icon: Github, l: 'GitHub' },
-                { href: 'https://linkedin.com/in/sayandkk', icon: Linkedin, l: 'LinkedIn' },
+                { href: 'https://www.linkedin.com/in/sayand-kk/', icon: Linkedin, l: 'LinkedIn' },
               ].map(({ href, icon: Icon, l }) => (
                 <a key={l} href={href} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-500 hover:border-emerald-600 hover:text-emerald-400 text-xs font-semibold transition-all duration-150 bg-zinc-900">

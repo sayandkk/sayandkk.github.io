@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
         <div className="flex items-center gap-2">
           {[
             { href: 'https://github.com/sayandkk', icon: Github, l: 'GitHub' },
-            { href: 'https://linkedin.com/in/sayandkk', icon: Linkedin, l: 'LinkedIn' },
+            { href: 'https://www.linkedin.com/in/sayand-kk/', icon: Linkedin, l: 'LinkedIn' },
             { href: 'mailto:sayandkk53@gmail.com', icon: Mail, l: 'Email' },
           ].map(({ href, icon: Icon, l }) => (
             <a key={l} href={href} target={href.startsWith('http') ? '_blank' : undefined}
