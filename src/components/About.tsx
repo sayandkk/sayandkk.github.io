@@ -89,7 +89,7 @@ const About: React.FC = () => (
         {/* Info cards */}
         {[
           { icon: MapPin, label: 'Based in', value: 'Kerala, India 🌿' },
-          { icon: Briefcase, label: 'Currently', value: 'Intern @ UL Tech' },
+          { icon: Briefcase, label: 'Currently', value: 'ASSOCIATE SOFTWARE ENGINEER @ UL Technology Solutions' },
           { icon: GraduationCap, label: 'Degree', value: 'B.Tech CS, CGPA 7.02' },
           { icon: Mail, label: 'Email', value: 'sayandkk53@gmail.com' },
         ].map(({ icon: Icon, label, value }, i) => (
