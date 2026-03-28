@@ -47,6 +47,16 @@ const projects = [
     live: '',
     category: 'Research',
   },
+  {
+    id: 5,
+    num: '05',
+    title: 'Document Converter',
+    description: 'A simple document conversion tool that allows users to convert files between different formats.',
+    image: 'https://images.pexels.com/photos/3825540/pexels-photo-3825540.jpeg?auto=compress&cs=tinysrgb&w=800',
+    tags: ['Python', 'React', 'NestJS', 'File Processing'],
+    live: 'https://pdf-app-xi.vercel.app',
+    category: 'Research',
+  },
 ];
 
 const filters = ['All', 'Web App', 'Business', 'Enterprise', 'Research'];
