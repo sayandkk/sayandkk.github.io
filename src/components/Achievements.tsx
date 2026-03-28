@@ -19,7 +19,7 @@ const achievements = [
     tag: 'Competition · 2024',
     title: 'TechPulse Hackathon — 1st Place',
     desc: 'Ranked 1st among 200+ participants. Built an innovative real-time collaboration tool, judged on technical depth, design, and business viability.',
-    link: '',
+    link: 'https://www.linkedin.com/posts/sayand-kk_techpulsehackathon-kissanx-beyond-activity-7297671539133489153-b4py/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADJGN2sBbBwyhm-sKHT4EwhkWM1ZDauh7Bg',
   },
   {
     icon: BookOpen,
@@ -30,7 +30,7 @@ const achievements = [
     tag: 'Research · 2024',
     title: 'Research Publication',
     desc: 'Co-authored "EMG Signal Analysis for Muscle Activity Recognition" presented at an international medical engineering conference.',
-    link: '',
+    link: 'https://www.linkedin.com/posts/sayand-kk_research-emganalysis-machinelearning-activity-7284203505219772416--SfC?utm_source=share&utm_medium=member_desktop&rcm=ACoAADJGN2sBbBwyhm-sKHT4EwhkWM1ZDauh7Bg',
   },
   {
     icon: Award,

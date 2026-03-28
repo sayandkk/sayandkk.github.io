@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Send, CheckCircle, Github, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Phone, CheckCircle, Github, Linkedin, ArrowRight } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -10,10 +10,22 @@ const Contact: React.FC = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    await new Promise((r) => setTimeout(r, 1600));
+
+    const subject = `Portfolio inquiry from ${form.name || 'Website visitor'}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      '',
+      'Message:',
+      form.message,
+    ].join('\n');
+
+    const mailtoUrl = `mailto:sayandkk53@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+
     setSending(false);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
