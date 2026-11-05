@@ -25,7 +25,7 @@ const categories = [
 ];
 
 const Skills: React.FC = () => (
-  <section id="skills" className="py-24 px-6 border-t border-zinc-900">
+  <section id="skills" className="py-24 px-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
     <div className="max-w-6xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,10 @@ const Skills: React.FC = () => (
       >
         <span className="section-num">02</span>
         <span className="label">Tech Stack</span>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100">What I<br /><span className="text-emerald-400">work with.</span></h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100">
+          What I<br />
+          <span className="text-emerald-500 dark:text-emerald-400">work with.</span>
+        </h2>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -47,11 +50,11 @@ const Skills: React.FC = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: ci * 0.08, duration: 0.5 }}
             viewport={{ once: true }}
-            className="card-dark p-6 hover:border-emerald-800 transition-all duration-200 group"
+            className="card-dark p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800 transition-all duration-200 group"
           >
             <div className="flex items-center gap-3 mb-5">
               <span className="text-2xl">{cat.icon}</span>
-              <h3 className="font-bold text-zinc-100 text-sm uppercase tracking-wider group-hover:text-emerald-400 transition-colors duration-150">
+              <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150">
                 {cat.label}
               </h3>
             </div>
@@ -63,7 +66,7 @@ const Skills: React.FC = () => (
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: ci * 0.05 + si * 0.04, duration: 0.35 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-2.5 py-1.5 px-3 rounded-lg bg-zinc-800/60 text-zinc-400 text-xs font-medium hover:bg-zinc-800 hover:text-emerald-400 transition-all duration-150"
+                  className="flex items-center gap-2.5 py-1.5 px-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 text-xs font-medium hover:bg-zinc-200/70 dark:hover:bg-zinc-800 hover:text-emerald-600 dark:hover:text-emerald-400 border border-zinc-200/60 dark:border-zinc-700/40 transition-all duration-150"
                 >
                   <span className="w-1 h-1 rounded-full bg-emerald-500 flex-shrink-0" />
                   {skill}

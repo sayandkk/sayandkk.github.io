@@ -48,7 +48,7 @@ const Experience: React.FC = () => {
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <section id="experience" className="py-24 px-6 border-t border-zinc-900">
+    <section id="experience" className="py-24 px-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,13 +59,16 @@ const Experience: React.FC = () => {
         >
           <span className="section-num">04</span>
           <span className="label">Career</span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100">Experience &<br /><span className="text-emerald-400">Education.</span></h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100">
+            Experience &<br />
+            <span className="text-emerald-500 dark:text-emerald-400">Education.</span>
+          </h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10">
           {/* Work */}
           <div>
-            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 mb-6 uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-6 uppercase tracking-widest">
               <Briefcase size={14} className="text-emerald-500" /> Work Experience
             </div>
 
@@ -77,7 +80,11 @@ const Experience: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
-                  className={`card-dark overflow-hidden transition-all duration-200 ${expanded === i ? 'border-emerald-800' : 'hover:border-zinc-700'}`}
+                  className={`card-dark overflow-hidden transition-all duration-200 ${
+                    expanded === i
+                      ? 'border-emerald-500/60 dark:border-emerald-800 shadow-md dark:shadow-none'
+                      : 'hover:border-zinc-300 dark:hover:border-zinc-700'
+                  }`}
                 >
                   <button
                     className="w-full text-left px-5 py-4 flex items-start justify-between gap-4"
@@ -85,20 +92,20 @@ const Experience: React.FC = () => {
                   >
                     <div>
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <h4 className="font-bold text-zinc-100 text-sm">{exp.title}</h4>
+                        <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">{exp.title}</h4>
                         {exp.current && (
-                          <span className="text-xs px-2 py-0.5 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full font-semibold">
+                          <span className="text-xs px-2 py-0.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 rounded-full font-semibold">
                             Current
                           </span>
                         )}
                       </div>
-                      <p className="text-emerald-400 text-xs font-semibold mb-0.5">{exp.org}</p>
-                      <div className="flex items-center gap-3 text-xs text-zinc-600">
+                      <p className="text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-0.5">{exp.org}</p>
+                      <div className="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
                         <span className="flex items-center gap-1"><MapPin size={10} />{exp.location}</span>
                         <span>{exp.period}</span>
                       </div>
                     </div>
-                    <div className="text-zinc-600 flex-shrink-0 mt-0.5">
+                    <div className="text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5">
                       {expanded === i ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
                   </button>
@@ -109,10 +116,10 @@ const Experience: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-5 pb-5 border-t border-zinc-800 pt-4">
+                    <div className="px-5 pb-5 border-t border-zinc-200 dark:border-zinc-800 pt-4">
                       <ul className="space-y-2 mb-4">
                         {exp.bullets.map((b, j) => (
-                          <li key={j} className="flex items-start gap-2 text-xs text-zinc-400 leading-relaxed">
+                          <li key={j} className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                             <span className="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
                             {b}
                           </li>
@@ -130,7 +137,7 @@ const Experience: React.FC = () => {
 
           {/* Education */}
           <div>
-            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 mb-6 uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-6 uppercase tracking-widest">
               <GraduationCap size={14} className="text-emerald-500" /> Education
             </div>
 
@@ -139,18 +146,18 @@ const Experience: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.5 }}
               viewport={{ once: true }}
-              className="card-dark p-6 hover:border-emerald-800 transition-colors duration-200"
+              className="card-dark p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800 transition-colors duration-200"
             >
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
-                <GraduationCap size={18} className="text-emerald-400" />
+                <GraduationCap size={18} className="text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h4 className="font-bold text-zinc-100 mb-1 text-sm">{education.degree}</h4>
-              <p className="text-emerald-400 font-semibold text-xs mb-3">{education.institution}</p>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-600 mb-4">
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-100 mb-1 text-sm">{education.degree}</h4>
+              <p className="text-emerald-600 dark:text-emerald-400 font-semibold text-xs mb-3">{education.institution}</p>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400 mb-4">
                 <span>{education.period}</span>
-                <span className="font-bold text-zinc-400">{education.grade}</span>
+                <span className="font-bold text-zinc-700 dark:text-zinc-300">{education.grade}</span>
               </div>
-              <p className="text-xs text-zinc-500 leading-relaxed">{education.details}</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{education.details}</p>
             </motion.div>
           </div>
         </div>

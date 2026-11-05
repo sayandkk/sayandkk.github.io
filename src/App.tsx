@@ -22,20 +22,20 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-6">
+      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col items-center justify-center gap-6 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
           className="relative"
         >
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
             <span className="text-zinc-950 font-black text-lg">SK</span>
           </div>
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-1.5 rounded-2xl border-2 border-transparent border-t-emerald-400 border-r-emerald-400 opacity-60"
+            className="absolute -inset-1.5 rounded-2xl border-2 border-transparent border-t-emerald-500 border-r-emerald-500 opacity-60"
           />
         </motion.div>
         <motion.div
@@ -58,7 +58,7 @@ function App() {
   }
 
   return (
-    <div className="bg-zinc-950 text-zinc-100 min-h-screen dark:bg-zinc-950 dark:text-zinc-100">
+    <div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200 selection:bg-emerald-500/20 selection:text-emerald-800 dark:selection:bg-emerald-500/30 dark:selection:text-emerald-100">
       <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
       <AnimatePresence>
         <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>

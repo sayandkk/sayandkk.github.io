@@ -12,10 +12,10 @@ const stats = [
 const achievements = [
   {
     icon: Trophy,
-    accent: 'border-yellow-500/30 bg-yellow-500/5',
-    iconBg: 'bg-yellow-500/10 border-yellow-500/20',
-    iconColor: 'text-yellow-400',
-    dot: 'bg-yellow-500',
+    accent: 'border-amber-500/30 dark:border-yellow-500/30 bg-amber-500/5 dark:bg-yellow-500/5',
+    iconBg: 'bg-amber-500/10 dark:bg-yellow-500/10 border-amber-500/20 dark:border-yellow-500/20',
+    iconColor: 'text-amber-600 dark:text-yellow-400',
+    dot: 'bg-amber-500 dark:bg-yellow-500',
     tag: 'Competition · 2024',
     title: 'TechPulse Hackathon — 1st Place',
     desc: 'Ranked 1st among 200+ participants. Built an innovative real-time collaboration tool, judged on technical depth, design, and business viability.',
@@ -25,7 +25,7 @@ const achievements = [
     icon: BookOpen,
     accent: 'border-cyan-500/30 bg-cyan-500/5',
     iconBg: 'bg-cyan-500/10 border-cyan-500/20',
-    iconColor: 'text-cyan-400',
+    iconColor: 'text-cyan-600 dark:text-cyan-400',
     dot: 'bg-cyan-500',
     tag: 'Research · 2024',
     title: 'Research Publication',
@@ -36,7 +36,7 @@ const achievements = [
     icon: Award,
     accent: 'border-emerald-500/30 bg-emerald-500/5',
     iconBg: 'bg-emerald-500/10 border-emerald-500/20',
-    iconColor: 'text-emerald-400',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
     dot: 'bg-emerald-500',
     tag: 'Internship · Feb 2024 – Feb 2025',
     title: 'Completed 1-Year Research Internship — Aster Medcity',
@@ -46,7 +46,7 @@ const achievements = [
 ];
 
 const Achievements: React.FC = () => (
-  <section id="achievements" className="py-24 px-6 border-t border-zinc-900">
+  <section id="achievements" className="py-24 px-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
     <div className="max-w-6xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,10 @@ const Achievements: React.FC = () => (
       >
         <span className="section-num">05</span>
         <span className="label">Recognition</span>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100">By the<br /><span className="text-emerald-400">Numbers.</span></h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100">
+          By the<br />
+          <span className="text-emerald-500 dark:text-emerald-400">Numbers.</span>
+        </h2>
       </motion.div>
 
       {/* Stats row */}
@@ -69,12 +72,12 @@ const Achievements: React.FC = () => (
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.07, duration: 0.4 }}
             viewport={{ once: true }}
-            className="card-dark p-5 flex flex-col gap-3 hover:border-emerald-800 transition-colors duration-200 group"
+            className="card-dark p-5 flex flex-col gap-3 hover:border-emerald-500/50 dark:hover:border-emerald-800 transition-colors duration-200 group"
           >
             <Icon size={18} className="text-emerald-500 group-hover:scale-110 transition-transform duration-200" />
             <div>
-              <div className="text-3xl font-black text-zinc-100 leading-none mb-1">{n}</div>
-              <div className="text-xs text-zinc-500 font-medium">{l}</div>
+              <div className="text-3xl font-black text-zinc-900 dark:text-zinc-100 leading-none mb-1">{n}</div>
+              <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{l}</div>
             </div>
           </motion.div>
         ))}
@@ -89,7 +92,7 @@ const Achievements: React.FC = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
             viewport={{ once: true }}
-            className={`rounded-2xl border p-6 ${a.accent} transition-all duration-200 hover:brightness-110`}
+            className={`rounded-2xl border p-6 ${a.accent} transition-all duration-200 hover:shadow-md`}
           >
             <div className="flex items-start gap-4">
               <div className={`w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0 ${a.iconBg}`}>
@@ -100,8 +103,8 @@ const Achievements: React.FC = () => (
                   <span className={`w-1.5 h-1.5 rounded-full ${a.dot}`} />
                   {a.tag}
                 </p>
-                <h3 className="font-bold text-zinc-100 mb-2 text-sm">{a.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed mb-3">{a.desc}</p>
+                <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-2 text-sm">{a.title}</h3>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">{a.desc}</p>
                 {a.link && (
                   <a
                     href={a.link}

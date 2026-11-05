@@ -32,10 +32,10 @@ const Contact: React.FC = () => {
     setTimeout(() => setSent(false), 5000);
   };
 
-  const inputCls = 'w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-600 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all duration-150';
+  const inputCls = 'w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/90 border border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all duration-150';
 
   return (
-    <section id="contact" className="py-24 px-6 border-t border-zinc-900">
+    <section id="contact" className="py-24 px-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
@@ -47,8 +47,11 @@ const Contact: React.FC = () => {
           >
             <span className="section-num">06</span>
             <span className="label">Contact</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100 mb-6">Let's work<br /><span className="text-emerald-400">together.</span></h2>
-            <p className="text-zinc-500 text-sm leading-relaxed mb-10 max-w-sm">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100 mb-6">
+              Let's work<br />
+              <span className="text-emerald-500 dark:text-emerald-400">together.</span>
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-10 max-w-sm">
               Whether it's a new project, a job opportunity, or just a friendly hello — drop me a message and I'll get back within 24 hours.
             </p>
 
@@ -59,13 +62,13 @@ const Contact: React.FC = () => {
                 { icon: MapPin, v: 'Edappal, Malappuram, Kerala, India', href: '' },
               ].map(({ icon: Icon, v, href }, i) => (
                 <div key={v} className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center flex-shrink-0">
-                    <Icon size={15} className="text-emerald-400" />
+                  <div className="w-9 h-9 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none flex items-center justify-center flex-shrink-0">
+                    <Icon size={15} className="text-emerald-600 dark:text-emerald-400" />
                   </div>
                   {href ? (
-                    <a href={href} className="text-sm text-zinc-400 hover:text-emerald-400 transition-colors duration-150 font-medium">{v}</a>
+                    <a href={href} className="text-sm text-zinc-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150 font-medium">{v}</a>
                   ) : (
-                    <span className="text-sm text-zinc-400 font-medium">{v}</span>
+                    <span className="text-sm text-zinc-700 dark:text-zinc-300 font-medium">{v}</span>
                   )}
                 </div>
               ))}
@@ -77,7 +80,7 @@ const Contact: React.FC = () => {
                 { href: 'https://www.linkedin.com/in/sayand-kk/', icon: Linkedin, l: 'LinkedIn' },
               ].map(({ href, icon: Icon, l }) => (
                 <a key={l} href={href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-500 hover:border-emerald-600 hover:text-emerald-400 text-xs font-semibold transition-all duration-150 bg-zinc-900">
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-semibold transition-all duration-150 bg-white dark:bg-zinc-900 shadow-sm dark:shadow-none">
                   <Icon size={13} /> {l}
                 </a>
               ))}
@@ -99,27 +102,27 @@ const Contact: React.FC = () => {
                   className="flex flex-col items-center justify-center py-14 text-center gap-4"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-                    <CheckCircle size={28} className="text-emerald-400" />
+                    <CheckCircle size={28} className="text-emerald-500 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <p className="font-bold text-zinc-100 mb-1">Message sent!</p>
-                    <p className="text-zinc-500 text-sm">I'll get back to you soon.</p>
+                    <p className="font-bold text-zinc-900 dark:text-zinc-100 mb-1">Message sent!</p>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm">I'll get back to you soon.</p>
                   </div>
                 </motion.div>
               ) : (
                 <form onSubmit={onSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 uppercase tracking-widest">Name</label>
+                      <label className="block text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-1.5 uppercase tracking-widest">Name</label>
                       <input name="name" value={form.name} onChange={onChange} required placeholder="John Doe" className={inputCls} />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 uppercase tracking-widest">Email</label>
+                      <label className="block text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-1.5 uppercase tracking-widest">Email</label>
                       <input name="email" type="email" value={form.email} onChange={onChange} required placeholder="john@email.com" className={inputCls} />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-mono text-zinc-600 mb-1.5 uppercase tracking-widest">Message</label>
+                    <label className="block text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-1.5 uppercase tracking-widest">Message</label>
                     <textarea name="message" rows={6} value={form.message} onChange={onChange} required placeholder="Tell me about your project or idea..." className={inputCls + ' resize-none'} />
                   </div>
                   <button type="submit" disabled={sending} className="btn-em w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed">

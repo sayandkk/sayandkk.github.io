@@ -36,7 +36,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800' : 'bg-transparent'
+        scrolled
+          ? 'bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-sm dark:shadow-none'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -45,10 +47,12 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-3 group"
         >
-          <div className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center group-hover:bg-emerald-400 transition-colors duration-200">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center group-hover:bg-emerald-400 transition-colors duration-200 shadow-sm shadow-emerald-500/20">
             <span className="text-zinc-950 font-black text-sm">SK</span>
           </div>
-          <span className="font-semibold text-zinc-100 text-sm hidden sm:block">Sayand K K</span>
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm hidden sm:block transition-colors duration-150">
+            Sayand K K
+          </span>
         </button>
 
         {/* Desktop nav */}
@@ -57,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             <button
               key={item.name}
               onClick={() => go(item.href)}
-              className="px-4 py-2 text-sm text-zinc-400 hover:text-emerald-400 hover:bg-zinc-900 rounded-lg transition-all duration-150 font-medium"
+              className="px-4 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/80 rounded-lg transition-all duration-150 font-medium"
             >
               {item.name}
             </button>
@@ -67,13 +71,20 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg text-zinc-400 hover:text-emerald-400 hover:bg-zinc-900 transition-all duration-150"
+            title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 transition-all duration-200 group"
           >
-            {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+            {darkMode ? (
+              <Sun size={17} className="text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
+            ) : (
+              <Moon size={17} className="text-zinc-700 dark:text-zinc-300 group-hover:-rotate-12 transition-transform duration-300" />
+            )}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-zinc-400 hover:text-emerald-400 hover:bg-zinc-900 transition-all duration-150"
+            aria-label="Toggle navigation menu"
+            className="md:hidden p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 transition-all duration-150"
           >
             {isOpen ? <X size={17} /> : <Menu size={17} />}
           </button>
@@ -87,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-zinc-950 border-t border-zinc-800"
+            className="md:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-800 shadow-xl"
           >
             <div className="max-w-6xl mx-auto px-6 py-3 flex flex-col gap-1">
               {nav.map((item, i) => (
@@ -97,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => go(item.href)}
-                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-emerald-400 hover:bg-zinc-900 rounded-lg transition-all duration-150"
+                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg transition-all duration-150"
                 >
                   {item.name}
                 </motion.button>

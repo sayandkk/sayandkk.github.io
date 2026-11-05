@@ -66,7 +66,7 @@ const Projects: React.FC = () => {
   const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="py-24 px-6 border-t border-zinc-900">
+    <section id="projects" className="py-24 px-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <motion.div
@@ -77,7 +77,10 @@ const Projects: React.FC = () => {
           >
             <span className="section-num">03</span>
             <span className="label">Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-100">Featured<br /><span className="text-emerald-400">Projects.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100">
+              Featured<br />
+              <span className="text-emerald-500 dark:text-emerald-400">Projects.</span>
+            </h2>
           </motion.div>
 
           <motion.div
@@ -93,8 +96,8 @@ const Projects: React.FC = () => {
                 onClick={() => setActive(f)}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${
                   active === f
-                    ? 'bg-emerald-500 text-zinc-950'
-                    : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:border-emerald-600 hover:text-emerald-400'
+                    ? 'bg-emerald-500 text-zinc-950 shadow-sm'
+                    : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-sm dark:shadow-none'
                 }`}
               >
                 {f}
@@ -112,48 +115,52 @@ const Projects: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.4 }}
-                className="card-dark overflow-hidden group hover:border-emerald-800 transition-all duration-200"
+                className="card-dark overflow-hidden group hover:border-emerald-500/50 dark:hover:border-emerald-800 transition-all duration-200"
               >
                 {/* Image */}
-                <div className="relative h-52 overflow-hidden bg-zinc-900">
+                <div className="relative h-52 overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                   <img
                     src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+                    className="w-full h-full object-cover opacity-85 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
-                  <span className="absolute top-4 left-4 font-mono text-4xl font-black text-white/10 leading-none select-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 dark:from-zinc-950 via-transparent to-transparent" />
+                  <span className="absolute top-4 left-4 font-mono text-4xl font-black text-zinc-900/10 dark:text-white/10 leading-none select-none">
                     {p.num}
                   </span>
-                  <span className="absolute top-4 right-4 text-xs font-semibold px-3 py-1 bg-zinc-950/80 text-zinc-400 border border-zinc-700 rounded-full backdrop-blur-sm">
+                  <span className="absolute top-4 right-4 text-xs font-semibold px-3 py-1 bg-white/90 dark:bg-zinc-950/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-full backdrop-blur-sm shadow-sm">
                     {p.category}
                   </span>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-zinc-100 mb-2 group-hover:text-emerald-400 transition-colors duration-150">{p.title}</h3>
-                  <p className="text-sm text-zinc-500 leading-relaxed mb-4">{p.description}</p>
+                  <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+                    {p.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-1.5 mb-5">
                     {p.tags.map((t) => <span key={t} className="pill">{t}</span>)}
                   </div>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-800">
+                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
                     {p.github && (
                       <a href={p.github} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-emerald-400 transition-colors duration-150">
+                        className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150">
                         <Github size={13} /> Source Code
                       </a>
                     )}
                     {p.live && (
                       <a href={p.live} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-emerald-400 transition-colors duration-150">
+                        className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150">
                         <ExternalLink size={13} /> Live Demo
                       </a>
                     )}
                     {!p.github && !p.live && (
-                      <span className="text-xs text-zinc-700 italic">Private / Proprietary</span>
+                      <span className="text-xs text-zinc-400 dark:text-zinc-600 italic">Private / Proprietary</span>
                     )}
                   </div>
                 </div>

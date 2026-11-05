@@ -20,28 +20,50 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     // Check localStorage first, then system preference
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      return saved === 'dark';
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        return saved === 'dark';
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true;
   });
 
   useEffect(() => {
     // Apply theme to document
+    const root = document.documentElement;
+    const metaTheme = document.querySelector('meta[name="color-scheme"]');
+
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
       localStorage.setItem('theme', 'dark');
+      if (metaTheme) metaTheme.setAttribute('content', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
+      if (metaTheme) metaTheme.setAttribute('content', 'light');
     }
   }, [isDarkMode]);
 
+  // Listen to OS theme changes if user hasn't explicitly set a preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const saved = localStorage.getItem('theme');
+      if (!saved) {
+        setIsDarkMode(e.matches);
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((prev) => !prev);
   };
 
   return (

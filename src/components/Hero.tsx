@@ -48,10 +48,10 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex items-center px-6 pt-16 relative overflow-hidden">
       {/* Background dot grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] [background-size:32px_32px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] [background-size:32px_32px]" />
       {/* Emerald glow blobs */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
@@ -69,10 +69,10 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="display text-zinc-100 mb-4"
+              className="display text-zinc-900 dark:text-zinc-100 mb-4"
             >
               Sayand<br />
-              <span className="text-emerald-400">K K</span>
+              <span className="text-emerald-500 dark:text-emerald-400">K K</span>
             </motion.h1>
 
             <motion.div
@@ -81,15 +81,15 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="text-lg md:text-xl font-medium text-zinc-400">{displayed}</span>
-              <span className="w-0.5 h-5 bg-emerald-400 animate-pulse rounded-full flex-shrink-0" />
+              <span className="text-lg md:text-xl font-medium text-zinc-700 dark:text-zinc-300">{displayed}</span>
+              <span className="w-0.5 h-5 bg-emerald-500 dark:bg-emerald-400 animate-pulse rounded-full flex-shrink-0" />
             </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-zinc-500 text-base leading-relaxed max-w-md mb-8"
+              className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-md mb-8"
             >
               Computer Science Engineer who loves crafting fast, elegant software —
               from pixel-perfect UIs to robust backend systems and everything in between.
@@ -132,7 +132,7 @@ const Hero: React.FC = () => {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-zinc-800 text-zinc-500 hover:border-emerald-500 hover:text-emerald-400 bg-zinc-900 transition-all duration-150"
+                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 bg-white dark:bg-zinc-900 shadow-sm dark:shadow-none transition-all duration-150"
                 >
                   <Icon size={16} />
                 </a>
@@ -147,15 +147,15 @@ const Hero: React.FC = () => {
             transition={{ delay: 0.35, duration: 0.7 }}
             className="hidden lg:block"
           >
-            <div className="card-dark rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
+            <div className="bg-zinc-900 dark:bg-zinc-900/90 border border-zinc-200/60 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl shadow-zinc-900/10 dark:shadow-black/50">
               {/* Terminal titlebar */}
-              <div className="flex items-center gap-2 px-5 py-4 bg-zinc-900/80 border-b border-zinc-800">
+              <div className="flex items-center gap-2 px-5 py-4 bg-zinc-950/60 border-b border-zinc-800">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/70" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
                   <div className="w-3 h-3 rounded-full bg-green-500/70" />
                 </div>
-                <div className="flex-1 flex items-center justify-center gap-1.5 text-xs text-zinc-600 font-mono">
+                <div className="flex-1 flex items-center justify-center gap-1.5 text-xs text-zinc-500 font-mono">
                   <Terminal size={11} /> developer.ts
                 </div>
               </div>
@@ -192,9 +192,9 @@ const Hero: React.FC = () => {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-zinc-700"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-zinc-400 dark:text-zinc-700"
         >
-          <div className="w-5 h-8 rounded-full border border-zinc-700 flex items-start justify-center pt-1.5">
+          <div className="w-5 h-8 rounded-full border border-zinc-300 dark:border-zinc-700 flex items-start justify-center pt-1.5">
             <motion.div
               animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
               transition={{ duration: 2.5, repeat: Infinity }}
