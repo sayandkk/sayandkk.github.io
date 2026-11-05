@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Terminal } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Github, Linkedin, Mail, Terminal, User } from 'lucide-react';
+import heroImage from '../assets/image.png';
 
 const roles = ['Full Stack Developer', 'Software Engineer', 'React Specialist', 'Open Source Builder'];
 
@@ -17,6 +18,7 @@ const codeLines = [
 ];
 
 const Hero: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'photo' | 'code'>('photo');
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [deleting, setDeleting] = useState(false);
@@ -140,49 +142,114 @@ const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right: Code terminal */}
+          {/* Right: Workspace Photo & Code Terminal */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.35, duration: 0.7 }}
-            className="hidden lg:block"
+            className="w-full mt-6 lg:mt-0"
           >
-            <div className="bg-zinc-900 dark:bg-zinc-900/90 border border-zinc-200/60 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl shadow-zinc-900/10 dark:shadow-black/50">
-              {/* Terminal titlebar */}
-              <div className="flex items-center gap-2 px-5 py-4 bg-zinc-950/60 border-b border-zinc-800">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/70" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/70" />
-                </div>
-                <div className="flex-1 flex items-center justify-center gap-1.5 text-xs text-zinc-500 font-mono">
-                  <Terminal size={11} /> developer.ts
-                </div>
-              </div>
+            <div className="relative group">
+              {/* Ambient Glow */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500/25 via-teal-500/15 to-cyan-500/25 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-              {/* Code content */}
-              <div className="p-6 font-mono text-sm leading-7 min-h-[280px]">
-                {codeLines.slice(0, visibleLines).map((line, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className={`${line.color}`}
-                    style={{ paddingLeft: line.indent * 20 }}
-                  >
-                    {line.text}
-                  </motion.div>
-                ))}
-                {visibleLines < codeLines.length && (
-                  <span className="w-2 h-4 bg-emerald-400 inline-block animate-pulse ml-1 rounded-sm" />
-                )}
-              </div>
+              <div className="relative bg-zinc-900/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl shadow-zinc-900/10 dark:shadow-black/60">
+                {/* Titlebar with view tabs */}
+                <div className="flex items-center justify-between px-4 py-3 bg-zinc-950/70 border-b border-zinc-800">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/70" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/70" />
+                    </div>
+                  </div>
 
-              {/* Status bar */}
-              <div className="px-5 py-3 bg-emerald-500 flex items-center justify-between">
-                <span className="text-zinc-950 text-xs font-mono font-bold">● TypeScript</span>
-                <span className="text-zinc-950 text-xs font-mono">Ln 9, Col 2</span>
+                  {/* Tabs */}
+                  <div className="flex items-center gap-1 bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-800/80 text-xs font-mono">
+                    <button
+                      onClick={() => setActiveTab('photo')}
+                      className={`flex items-center gap-1.5 px-3 py-1 rounded-md transition-all duration-150 ${
+                        activeTab === 'photo'
+                          ? 'bg-emerald-500 text-zinc-950 font-bold shadow-sm'
+                          : 'text-zinc-400 hover:text-zinc-200'
+                      }`}
+                    >
+                      <User size={11} /> Workspace
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('code')}
+                      className={`flex items-center gap-1.5 px-3 py-1 rounded-md transition-all duration-150 ${
+                        activeTab === 'code'
+                          ? 'bg-emerald-500 text-zinc-950 font-bold shadow-sm'
+                          : 'text-zinc-400 hover:text-zinc-200'
+                      }`}
+                    >
+                      <Terminal size={11} /> developer.ts
+                    </button>
+                  </div>
+
+                  <span className="text-[11px] font-mono text-zinc-500 hidden sm:inline">
+                    {activeTab === 'photo' ? 'Sayand @ ULTS' : 'TypeScript'}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <AnimatePresence mode="wait">
+                  {activeTab === 'photo' ? (
+                    <motion.div
+                      key="photo"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative overflow-hidden aspect-[16/9] bg-zinc-950"
+                    >
+                      <img
+                        src={heroImage}
+                        alt="Sayand K K - Associate Software Engineer at work"
+                        className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                        loading="eager"
+                      />
+                      {/* Floating status badge */}
+                      <div className="absolute bottom-3 right-3 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-zinc-700/60 text-xs font-medium text-zinc-200 shadow-xl">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>Associate Software Engineer @ ULTS</span>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="code"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="p-6 font-mono text-sm leading-7 min-h-[280px]">
+                        {codeLines.slice(0, visibleLines).map((line, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: -8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className={`${line.color}`}
+                            style={{ paddingLeft: line.indent * 20 }}
+                          >
+                            {line.text}
+                          </motion.div>
+                        ))}
+                        {visibleLines < codeLines.length && (
+                          <span className="w-2 h-4 bg-emerald-400 inline-block animate-pulse ml-1 rounded-sm" />
+                        )}
+                      </div>
+
+                      {/* Status bar */}
+                      <div className="px-5 py-2.5 bg-emerald-500 flex items-center justify-between">
+                        <span className="text-zinc-950 text-xs font-mono font-bold">● TypeScript</span>
+                        <span className="text-zinc-950 text-xs font-mono">Ln 9, Col 2</span>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>

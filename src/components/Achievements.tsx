@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Trophy, BookOpen, Zap, Star, Package, Award } from 'lucide-react';
 
 const stats = [
-  { n: '3+', l: 'Projects', icon: Zap },
+  { n: '6+', l: 'Projects', icon: Zap },
   // { n: '+', l: 'Repos', icon: Package },
   // { n: '12+', l: 'Technologies', icon: Star },
   { n: '2+', l: 'Hackathons', icon: Trophy },
