@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useTheme } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,6 +11,29 @@ import Experience from './components/Experience';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AllProjects from './components/AllProjects';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function HomePage() {
+  return (
+    <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Achievements />
+      <Contact />
+    </motion.main>
+  );
+}
 
 function App() {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -58,21 +82,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200 selection:bg-emerald-500/20 selection:text-emerald-800 dark:selection:bg-emerald-500/30 dark:selection:text-emerald-100">
-      <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
-      <AnimatePresence>
-        <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Achievements />
-          <Contact />
-        </motion.main>
-      </AnimatePresence>
-      <Footer />
-    </div>
+    <HashRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200 selection:bg-emerald-500/20 selection:text-emerald-800 dark:selection:bg-emerald-500/30 dark:selection:text-emerald-100 flex flex-col justify-between">
+        <div>
+          <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/projects" element={<AllProjects />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </AnimatePresence>
+        </div>
+        <Footer />
+      </div>
+    </HashRouter>
   );
 }
 

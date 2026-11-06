@@ -1,9 +1,23 @@
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const nav = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
-  const go = (s: string) => document.querySelector(`#${s.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
+
+  const go = (s: string) => {
+    const id = `#${s.toLowerCase()}`;
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 120);
+    } else {
+      document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 px-6 py-10 transition-colors duration-200">
@@ -15,12 +29,22 @@ const Footer: React.FC = () => {
           <span className="text-sm text-zinc-500 dark:text-zinc-400">© {new Date().getFullYear()} Sayand K K</span>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-5 gap-y-1">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
           {nav.map((n) => (
-            <button key={n} onClick={() => go(n)} className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150 font-medium">
+            <button
+              key={n}
+              onClick={() => go(n)}
+              className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150 font-medium cursor-pointer"
+            >
               {n}
             </button>
           ))}
+          <Link
+            to="/projects"
+            className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline transition-colors duration-150"
+          >
+            All Products
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
@@ -29,16 +53,21 @@ const Footer: React.FC = () => {
             { href: 'https://www.linkedin.com/in/sayand-kk/', icon: Linkedin, l: 'LinkedIn' },
             { href: 'mailto:sayandkk53@gmail.com', icon: Mail, l: 'Email' },
           ].map(({ href, icon: Icon, l }) => (
-            <a key={l} href={href} target={href.startsWith('http') ? '_blank' : undefined}
-              rel="noopener noreferrer" aria-label={l}
-              className="w-8 h-8 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-50 dark:bg-zinc-900 shadow-sm dark:shadow-none transition-all duration-150">
+            <a
+              key={l}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              aria-label={l}
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-50 dark:bg-zinc-900 shadow-sm dark:shadow-none transition-all duration-150"
+            >
               <Icon size={13} />
             </a>
           ))}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Scroll to top"
-            className="w-8 h-8 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-50 dark:bg-zinc-900 shadow-sm dark:shadow-none transition-all duration-150"
+            className="w-8 h-8 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 bg-zinc-50 dark:bg-zinc-900 shadow-sm dark:shadow-none transition-all duration-150 cursor-pointer"
           >
             <ArrowUp size={13} />
           </button>

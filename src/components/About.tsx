@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Briefcase, GraduationCap, Mail, Zap } from 'lucide-react';
 
 const stats = [
-  { n: '7+', l: 'Projects' },
+  { n: '8+', l: 'Projects' },
   { n: '1+', l: 'Years Exp.' },
   { n: '2+', l: 'Hackathons' },
 ];
